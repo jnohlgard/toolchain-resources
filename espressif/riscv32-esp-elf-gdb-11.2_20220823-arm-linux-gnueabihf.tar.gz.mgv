@@ -1,0 +1,1 @@
+DIST riscv32-esp-elf-gdb-11.2_20220823-arm-linux-gnueabihf.tar.gz 23773607 URL https://github.com/espressif/binutils-gdb/releases/download/esp-gdb-v11.2_20220823/riscv32-esp-elf-gdb-11.2_20220823-arm-linux-gnueabihf.tar.gz SHA256 0893cbc6e987c9e2016775e364733f9c34eb1c6ba283d296d8ff503a5a054c59

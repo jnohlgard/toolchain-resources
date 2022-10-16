@@ -1,0 +1,1 @@
+DIST riscv32-esp-elf-gdb-11.2_20220823-i686-w64-mingw32.zip 23436802 URL https://github.com/espressif/binutils-gdb/releases/download/esp-gdb-v11.2_20220823/riscv32-esp-elf-gdb-11.2_20220823-i686-w64-mingw32.zip SHA256 20cdee8a1c01428363ef02f4cc8035c65508d6b43560c525733eae94b7c7bb50

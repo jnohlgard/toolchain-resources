@@ -1,0 +1,1 @@
+DIST riscv32-esp-elf-gdb-11.2_20220823-i586-linux-gnu.tar.gz 26188698 URL https://github.com/espressif/binutils-gdb/releases/download/esp-gdb-v11.2_20220823/riscv32-esp-elf-gdb-11.2_20220823-i586-linux-gnu.tar.gz SHA256 3463be3e24182b7f1bd0fb232020534445b2d0ea0e7093c1b4f4da102b3baf52
