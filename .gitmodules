@@ -1,0 +1,3 @@
+[submodule "mgv"]
+	path = mgv
+	url = https://github.com/jnohlgard/mgv.git

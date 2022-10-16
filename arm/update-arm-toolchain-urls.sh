@@ -4,6 +4,8 @@ set -euo pipefail
 download_page_url="https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads"
 download_root_url="https://developer.arm.com"
 
+mgv="$(dirname "$0")/../mgv/mgv"
+
 # download all *.sha256asc URLs from the download page HTML source.
 curl -sSf -L "${download_page_url}" | \
     sed -n -e 's/^.*href="\([^"]*\.sha256asc\)[^"]*".*$/\1/p' | \
@@ -18,4 +20,5 @@ do
   file_sha256=$(curl -sSf -L "${sha256asc_url}" | cut -d' ' -f1)
   file_name="${file_url##*/}"
   printf 'DIST %s - URL %s SHA256 %s\n' "${file_name}" "${file_url}" "${file_sha256}" > "${file_name}.mgv"
+  "${mgv}" fix-size "${file_name}.mgv"
 done
