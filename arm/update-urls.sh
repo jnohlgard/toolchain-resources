@@ -6,6 +6,7 @@ download_root_url="https://developer.arm.com"
 
 mgv="$(dirname "$0")/../mgv/mgv"
 
+cd "$(dirname "$0")"
 # download all *.sha256asc URLs from the download page HTML source.
 curl -sSf -L "${download_page_url}" | \
     sed -n -e 's/^.*href="\([^"]*\.sha256asc\)[^"]*".*$/\1/p' | \
