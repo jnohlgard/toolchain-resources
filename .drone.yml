@@ -1,0 +1,24 @@
+kind: pipeline
+type: docker
+name: update-all
+
+steps:
+- name: update
+  image: drone/git
+  commands:
+  - 'git config user.name "CI Bot"'
+  - 'git config user.email "drone@nohlgard.se"'
+  - ./update-all-and-commit.sh
+
+- name: git-push
+  image: appleboy/drone-git-push
+  settings:
+    branch: "${DRONE_BRANCH}"
+    remote: "git@github.com:${DRONE_REPO}.git"
+    force: false
+    ssh_key: 
+      from_secret: git_push_ssh
+  when:
+    event:
+      exclude:
+      - pull_request
