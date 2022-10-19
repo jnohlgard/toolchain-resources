@@ -2,7 +2,13 @@
 set -euo pipefail
 
 cd "$(dirname "$0")"
+if [ -n "$(git status --porcelain)" ]; then
+  >&2 printf 'Working directory is not clean\n'
+  exit 1
+fi
 for d in arm espressif; do
   "./$d/update-urls.sh"
-  git commit "./$d" -m "$d: Sync latest upstream links"
+  if [ -n "$(git status --porcelain)" ]; then
+    git commit "./$d" -m "$d: Sync latest upstream links"
+  fi
 done
