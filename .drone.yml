@@ -2,6 +2,10 @@ kind: pipeline
 type: docker
 name: update-all
 
+platform:
+  os: linux
+  arch: any
+
 steps:
 - name: update
   image: drone/git
