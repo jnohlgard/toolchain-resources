@@ -7,6 +7,11 @@ platform:
   arch: any
 
 steps:
+- name: submodules
+  image: alpine/git
+  commands:
+  - git submodule update --init --recursive
+
 - name: update
   image: drone/git
   commands:
