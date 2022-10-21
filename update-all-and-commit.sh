@@ -8,7 +8,8 @@ if [ -n "$(git status --porcelain)" ]; then
 fi
 for d in arm espressif; do
   "./$d/update-urls.sh"
-  if [ -n "$(git status --porcelain)" ]; then
+  if [ -n "$(git status --porcelain "./$d")" ]; then
+    git add "./$d"
     git commit "./$d" -m "$d: Sync latest upstream links"
   fi
 done
