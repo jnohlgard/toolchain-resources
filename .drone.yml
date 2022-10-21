@@ -13,8 +13,9 @@ steps:
   - git submodule update --init --recursive
 
 - name: update
-  image: drone/git
+  image: alpine/git
   commands:
+  - 'apk add --no-cache jq'
   - 'git config user.name "CI Bot"'
   - 'git config user.email "drone@nohlgard.se"'
   - ./update-all-and-commit.sh
