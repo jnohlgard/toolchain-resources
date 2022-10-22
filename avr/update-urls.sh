@@ -2,7 +2,8 @@
 set -euo pipefail
 
 repo_url=https://api.github.com/repos/ZakKemble/avr-gcc-build
-mgv="$(dirname "$0")/../mgv/mgv"
+cd "$(dirname "$0")"
+mgv="${PWD}/../mgv/mgv"
 
 update_shasums() {
   if [ "$#" -ne 1 ]; then
