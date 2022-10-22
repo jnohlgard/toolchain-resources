@@ -9,6 +9,9 @@ update_shasums() {
     return 1
   fi
   shasum_url=$1
+  release=${shasum_url%/*}
+  release=${release##*/}
+  printf 'Updating SHA256 sums for release %s\n' "${release}"
   curl -fsSL "${shasum_url}" | while read hash dest
   do
     dest=${dest#\*}
@@ -24,13 +27,14 @@ update_shasums() {
   done
 }
 
-curl -fsSL -H 'Accept: application/vnd.github+json' "${repo_url}/releases" | jq -jr \
-  '.[] | select(.assets[].name == "SHA256SUMS") | .assets[] | (select(.name != "SHA256SUMS"), select(.name == "SHA256SUMS")) | ("DIST ", .name, " ", .size, " URL ", .browser_download_url, "\n")' | \
+curl -fsSL -H 'Accept: application/vnd.github+json' "${repo_url}/releases" | jq -r \
+    '.[] | select(.assets[].name == "SHA256SUMS") | .assets[] | (select(.name != "SHA256SUMS"), select(.name == "SHA256SUMS")) | ("DIST \(.name) \(.size) URL \(.browser_download_url)")' | \
   while read tag filename size url_tag url checksums
 do
   if [ "${filename}" = 'SHA256SUMS' ]; then
     update_shasums "${url}"
     continue
   fi
+  printf '%s\n' "${filename}"
   printf '%s %s %s %s %s %s\n' "${tag}" "${filename}" "${size}" "${url_tag}" "${url}" "${checksums}" | "${mgv}" import
 done
