@@ -3,15 +3,16 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 pwd
-for d in arm espressif; do
-  printf 'Updating %s\n' "$d"
-  if [ -n "$(git status --porcelain "$d")" ]; then
-    >&2 printf 'Skipping unclean %s\n' "$d"
+for update_script in */update-urls.sh; do
+  dir=${update_script%/*}
+  printf 'Updating %s\n' "${dir}"
+  if [ -n "$(git status --porcelain "${dir}")" ]; then
+    >&2 printf 'Skipping unclean %s\n' "${dir}"
     continue
   fi
-  sh "./$d/update-urls.sh"
-  if [ -n "$(git status --porcelain "./$d")" ]; then
-    git add "./$d"
-    git commit "./$d" -m "$d: Sync latest upstream links"
+  sh "${update_script}"
+  if [ -n "$(git status --porcelain "${dir}")" ]; then
+    git add "${dir}"
+    git commit "${dir}" -m "${dir}: Sync latest upstream links"
   fi
 done
