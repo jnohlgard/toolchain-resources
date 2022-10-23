@@ -14,11 +14,13 @@ steps:
 
 - name: update
   image: alpine/git
+  environment:
+    GIT_AUTHOR_NAME: Drone
+    GIT_COMMITTER_NAME: Drone
+    GIT_AUTHOR_EMAIL: drone@nohlgard.se
+    GIT_COMMITTER_EMAIL: drone@nohlgard.se
   commands:
-  - printenv
   - apk add --no-cache jq curl
-  - git config user.name "CI Bot"
-  - git config user.email "drone@nohlgard.se"
   - ./update-all-and-commit.sh
 
 - name: git-push
