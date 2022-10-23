@@ -15,6 +15,7 @@ steps:
 - name: update
   image: alpine/git
   commands:
+  - printenv
   - apk add --no-cache jq curl
   - git config user.name "CI Bot"
   - git config user.email "drone@nohlgard.se"
