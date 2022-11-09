@@ -1,0 +1,8 @@
+/arm/
+/avr/
+/espressif/
+/mips/
+/xpack/
+!*.mgv
+!*.md
+!*.sh
