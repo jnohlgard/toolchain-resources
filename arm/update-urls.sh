@@ -14,15 +14,19 @@ curl -sSf -L "${download_page_url}" | \
 do
   [ -n "${sha256asc_url}" ] || continue
   file_url=${sha256asc_url%.sha256asc}
+  file_name="${file_url##*/}"
   printf 'Adding %s\n' "${file_url}"
 
   # Read the sha256 hash from the sha256asc file
-  file_sha256=$(curl -sSf -L "${sha256asc_url}" | cut -d' ' -f1)
-  file_name="${file_url##*/}"
+  if ! file_sha256=$(curl -sSf -L "${sha256asc_url}" | cut -d' ' -f1); then
+    >&2 printf 'Failed to fetch SHA256 sum for %s, skipping...\n' "${file_name}"
+    continue
+  fi
   printf 'DIST %s - URL %s SHA256 %s\n' "${file_name}" "${file_url}" "${file_sha256}" > "${dest_path}/${file_name}.mgv"
   if ! "${mgv}" fix-size "${dest_path}/${file_name}.mgv"; then
     >&2 printf 'Failed to get real file size for %s, skipping...\n' "${file_name}"
     rm -f "${dest_path}/${file_name}.mgv"
     git -C "${dest_path}" checkout -f HEAD -- "${file_name}.mgv" 2>/dev/null || true
+    continue
   fi
 done
