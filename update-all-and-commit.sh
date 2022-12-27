@@ -10,7 +10,12 @@ for update_script in */update-urls.sh; do
     >&2 printf 'Skipping unclean %s\n' "${dir}"
     continue
   fi
-  sh "${update_script}"
+  if ! sh "${update_script}"; then
+    >&2 printf 'Update script failed in %s\n' "${dir}"
+    git clean -f "${dir}"
+    git checkout -f HEAD "${dir}"
+    continue
+  fi
   if [ -n "$(git status --porcelain "${dir}")" ]; then
     git add "${dir}"
     git commit "${dir}" -m "${dir}: Sync latest upstream links"
