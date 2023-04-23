@@ -2,6 +2,7 @@
 /avr/*
 /espressif/*
 /mips/*
+/sifive/*
 /xpack/*
 !*.mgv
 !*.md
