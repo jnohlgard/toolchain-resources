@@ -1,0 +1,1 @@
+DIST riscv32-esp-elf-12.2.0_20230208-x86_64-w64-mingw32.zip 328092732 URL https://github.com/espressif/crosstool-NG/releases/download/esp-12.2.0_20230208/riscv32-esp-elf-12.2.0_20230208-x86_64-w64-mingw32.zip SHA256 9deae9e0013b2f7bbf017f9c8135755bfa89522f337c7dca35872bf12ec08176

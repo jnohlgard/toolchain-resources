@@ -1,0 +1,1 @@
+DIST riscv32-esp-elf-12.2.0_20230208-x86_64-linux-gnu.tar.xz 131410024 URL https://github.com/espressif/crosstool-NG/releases/download/esp-12.2.0_20230208/riscv32-esp-elf-12.2.0_20230208-x86_64-linux-gnu.tar.xz SHA256 21694e5ee506f5e52908b12c6b5be7044d87cf34bb4dfcd151d0a10ea09dedc1
