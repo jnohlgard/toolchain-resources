@@ -1,0 +1,1 @@
+DIST riscv32-esp-elf-13.2.0_20230928-x86_64-apple-darwin.tar.xz 153157496 URL https://github.com/espressif/crosstool-NG/releases/download/esp-13.2.0_20230928/riscv32-esp-elf-13.2.0_20230928-x86_64-apple-darwin.tar.xz SHA256 ce40c75a1ae0e4b986daeeff321aaa7b57f74eb4bcfd011f1252fd6932bbb90f
